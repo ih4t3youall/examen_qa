@@ -50,9 +50,9 @@
             {% for task in tasks %}
                 <div class="card task-card mb-2">
                     <div class="card-body">
-                        <h5 class="card-title">{{ task.task_name }}</h5>
+                        <h5 class="card-title">Nombre Tarea: {{ task.task_name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Asignado a: {{ task.asignee }}</h6>
-                        <p class="card-text">{{ task.content }}</p>
+                        <p class="card-text">Contenido: {{ task.content }}</p>
                         <div class="task-actions">
                             <form method="post" action="/tasks/{{ task.id }}/delete" style="display: inline;">
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
