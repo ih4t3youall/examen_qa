@@ -202,3 +202,78 @@ pip install python-multipart
 2025-07-31 21:44:20,711 - pika.adapters.blocking_connection - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
 2025-07-31 21:44:20,711 - task_service - INFO - Message for task c972d1ac-c444-4ad7-90a9-30d3c4be217c sent to queue successfully
 2025-07-31 21:44:20,711 - task_service - INFO - Task c972d1ac-c444-4ad7-90a9-30d3c4be217c created successfully
+2025-07-31 21:50:24,828 - task_service - INFO - ================================================================================
+2025-07-31 21:50:24,828 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:50:24.828654
+2025-07-31 21:50:24,828 - task_service - INFO - ================================================================================
+2025-07-31 21:59:10,953 - task_service - INFO - ================================================================================
+2025-07-31 21:59:10,953 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:59:10.953781
+2025-07-31 21:59:10,953 - task_service - INFO - ================================================================================
+2025-07-31 21:59:48,698 - task_service - INFO - Creating new task - ID: 490c5ff9-4b7b-4bf1-9fb4-c7900c2e072e
+2025-07-31 21:59:48,699 - task_service - INFO - Task Name: asd
+2025-07-31 21:59:48,699 - task_service - INFO - Content: asd
+2025-07-31 21:59:48,699 - task_service - INFO - Assignee: asd
+2025-07-31 21:59:48,699 - task_service - INFO - Sending task 490c5ff9-4b7b-4bf1-9fb4-c7900c2e072e to message queue
+2025-07-31 21:59:50,772 - task_service - ERROR - Error sending task 490c5ff9-4b7b-4bf1-9fb4-c7900c2e072e to queue: Could not connect to the endpoint URL: "http://localhost:9324/"
+2025-07-31 21:59:50,772 - task_service - INFO - Task 490c5ff9-4b7b-4bf1-9fb4-c7900c2e072e created successfully
+2025-07-31 22:00:00,214 - task_service - INFO - Creating new task - ID: aec67873-def1-4883-97e1-b80a1ab5cbab
+2025-07-31 22:00:00,214 - task_service - INFO - Task Name: rafasa
+2025-07-31 22:00:00,214 - task_service - INFO - Content: asda
+2025-07-31 22:00:00,215 - task_service - INFO - Assignee: adwq
+2025-07-31 22:00:00,215 - task_service - INFO - Sending task aec67873-def1-4883-97e1-b80a1ab5cbab to message queue
+2025-07-31 22:00:02,323 - task_service - ERROR - Error sending task aec67873-def1-4883-97e1-b80a1ab5cbab to queue: Could not connect to the endpoint URL: "http://localhost:9324/"
+2025-07-31 22:00:02,323 - task_service - INFO - Task aec67873-def1-4883-97e1-b80a1ab5cbab created successfully
+2025-07-31 22:04:24,010 - __main__ - INFO - ================================================================================
+2025-07-31 22:04:24,010 - __main__ - INFO - Starting Task Consumer at 2025-07-31 22:04:24.010942
+2025-07-31 22:04:24,010 - __main__ - INFO - ================================================================================
+2025-07-31 22:06:35,775 - task_service - INFO - ================================================================================
+2025-07-31 22:06:35,775 - task_service - INFO - Starting Task Consumer at 2025-07-31 22:06:35.775463
+2025-07-31 22:06:35,775 - task_service - INFO - ================================================================================
+2025-07-31 22:06:39,364 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-07-31 22:07:09,546 - __main__ - INFO - ================================================================================
+2025-07-31 22:07:09,546 - __main__ - INFO - Starting Task Consumer at 2025-07-31 22:07:09.546436
+2025-07-31 22:07:09,546 - __main__ - INFO - ================================================================================
+2025-07-31 22:07:13,875 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-07-31 22:07:43,738 - task_service - INFO - ================================================================================
+2025-07-31 22:07:43,738 - task_service - INFO - Starting Task Consumer at 2025-07-31 22:07:43.738701
+2025-07-31 22:07:43,738 - task_service - INFO - ================================================================================
+2025-07-31 22:07:54,932 - task_service - INFO - ================================================================================
+2025-07-31 22:07:54,932 - task_service - INFO - Starting Task Consumer at 2025-07-31 22:07:54.932267
+2025-07-31 22:07:54,932 - task_service - INFO - ================================================================================
+2025-07-31 22:08:07,218 - task_service - INFO - Creating new task - ID: c35b892a-fd65-4a14-92cd-822304614c6e
+2025-07-31 22:08:07,219 - task_service - INFO - Task Name: asasdasdasdasd
+2025-07-31 22:08:07,219 - task_service - INFO - Content: asdasdasdasd
+2025-07-31 22:08:10,003 - task_service - INFO - Assignee: asdasdads
+2025-07-31 22:08:42,970 - task_service - INFO - Sending task c35b892a-fd65-4a14-92cd-822304614c6e to message queue
+2025-07-31 22:11:03,922 - task_service - INFO - ================================================================================
+2025-07-31 22:11:03,923 - task_service - INFO - Starting Task Consumer at 2025-07-31 22:11:03.923001
+2025-07-31 22:11:03,923 - task_service - INFO - ================================================================================
+2025-07-31 22:11:12,765 - task_service - INFO - Creating new task - ID: 92c1c711-fd21-4dbb-aa50-b83368fb5687
+2025-07-31 22:11:12,766 - task_service - INFO - Task Name: asasdasdasdasd
+2025-07-31 22:11:12,766 - task_service - INFO - Content: asdasdasdasd
+2025-07-31 22:11:17,063 - task_service - INFO - Assignee: asdasdads
+2025-07-31 22:11:17,063 - task_service - INFO - Sending task 92c1c711-fd21-4dbb-aa50-b83368fb5687 to message queue
+2025-07-31 22:12:34,625 - task_service - INFO - ================================================================================
+2025-07-31 22:12:34,625 - task_service - INFO - Starting Task Consumer at 2025-07-31 22:12:34.625486
+2025-07-31 22:12:34,625 - task_service - INFO - ================================================================================
+2025-07-31 22:12:41,285 - task_service - INFO - Creating new task - ID: 8a77047f-42be-4ba3-a5ad-d622fef70e27
+2025-07-31 22:12:41,286 - task_service - INFO - Task Name: asasdasdasdasd
+2025-07-31 22:12:41,286 - task_service - INFO - Content: asdasdasdasd
+2025-07-31 22:12:43,520 - task_service - INFO - Assignee: asdasdads
+2025-07-31 22:12:43,521 - task_service - INFO - Sending task 8a77047f-42be-4ba3-a5ad-d622fef70e27 to message queue
+2025-07-31 22:12:57,545 - task_service - INFO - Message for task 8a77047f-42be-4ba3-a5ad-d622fef70e27 sent to queue successfully
+2025-07-31 22:12:57,546 - task_service - INFO - Task 8a77047f-42be-4ba3-a5ad-d622fef70e27 created successfully
+2025-07-31 22:20:53,444 - task_service - INFO - Creating new task - ID: beac8000-ade2-46d1-bf5a-d65795800d16
+2025-07-31 22:20:53,445 - task_service - INFO - Task Name: asd
+2025-07-31 22:20:53,445 - task_service - INFO - Content: asd
+2025-07-31 22:20:55,905 - task_service - INFO - Assignee: asd
+2025-07-31 22:20:55,906 - task_service - INFO - Sending task beac8000-ade2-46d1-bf5a-d65795800d16 to message queue
+2025-07-31 22:20:55,949 - task_service - INFO - Message for task beac8000-ade2-46d1-bf5a-d65795800d16 sent to queue successfully
+2025-07-31 22:20:55,949 - task_service - INFO - Task beac8000-ade2-46d1-bf5a-d65795800d16 created successfully

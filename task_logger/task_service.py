@@ -1,9 +1,11 @@
-import pika
 import json
 import logging
 import threading
+import time
+import boto3
 from datetime import datetime
 from fastapi import APIRouter
+from botocore.config import Config
 from resources.config import CONFIG
 
 __all__ = ['router', 'start_consumer']
@@ -53,101 +55,130 @@ async def get_all_tasks():
         "all_operations": executed_commands
     }
 
-def process_message(channel, method, properties, body):
+def process_message(message):
     try:
-        message = json.loads(body)
-        task_id = message.get('id', 'unknown')
-        action = message.get('action', 'unknown')
+        # SQS messages are in the 'body' field and need to be parsed from JSON string
+        message_body = json.loads(message['Body'])
+        task_id = message_body.get('id', 'unknown')
+        action = message_body.get('action', 'unknown')
 
         logger.info(f"Processing message - Task ID: {task_id}, Action: {action}")
 
         if action == 'create':
             logger.info(f"Creating/Updating task - ID: {task_id}")
-            logger.info(f"Task Name: {message.get('task_name', 'N/A')}")
-            logger.info(f"Description: {message.get('content', 'N/A')}")
-            logger.info(f"Assignee: {message.get('asignee', 'N/A')}")
-            executed_commands.append(
-                f"Create::: task_id: {task_id}, task_name: {message.get('task_name', 'N/A')}, content: {message.get('content', 'N/A')}, asignee: {message.get('asignee', 'N/A')}"
-            )
+            logger.info(f"Task Name: {message_body.get('task_name', 'N/A')}")
+            logger.info(f"Description: {message_body.get('content', 'N/A')}")
+            logger.info(f"Assignee: {message_body.get('asignee', 'N/A')}")
+            logger.info(f"Status: {message_body.get('status', 'N/A')}")
+            executed_commands.append(f"Create task {task_id}")
         elif action == 'delete':
             logger.info(f"Deleting task - ID: {task_id}")
-            executed_commands.append(f"Delete::: task_id: {task_id}")
+            executed_commands.append(f"Delete task {task_id}")
         else:
             logger.warning(f"Unknown action received: {action} for task ID: {task_id}")
 
-        channel.basic_ack(delivery_tag=method.delivery_tag)
         logger.info(f"Successfully processed message for task ID: {task_id}")
+        return True
 
     except json.JSONDecodeError as je:
         logger.error(f"Failed to decode message: {str(je)}")
-        channel.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
+        return False
     except Exception as e:
         logger.error(f"Error processing message: {str(e)}", exc_info=True)
-        channel.basic_nack(delivery_tag=method.delivery_tag, requeue=True)
+        return False
+
+def get_sqs_client():
+    """Create and return an SQS client with the configured settings."""
+    return boto3.client(
+        'sqs',
+        endpoint_url=CONFIG['sqs']['endpoint_url'],
+        region_name=CONFIG['sqs']['region_name'],
+        aws_access_key_id="test",  # <<< AÑADIR ESTO
+        aws_secret_access_key="test",  # <<< AÑADIR ESTO
+        config=Config(
+            retries={
+                'max_attempts': 3,
+                'mode': 'standard'
+            }
+        )
+    )
+
+def get_queue_url(sqs_client):
+    """Get or create the SQS queue and return its URL."""
+    try:
+        response = sqs_client.get_queue_url(QueueName=CONFIG['sqs']['queue_url'])
+        return response['QueueUrl']
+    except sqs_client.exceptions.QueueDoesNotExist:
+        logger.info(f"Queue {CONFIG['sqs']['queue_url']} does not exist. Creating it...")
+        response = sqs_client.create_queue(QueueName=CONFIG['sqs']['queue_url'])
+        return response['QueueUrl']
 
 def start_consumer():
-    connection = None
     max_retries = 3
     retry_count = 0
+    sqs_client = None
+    queue_url = None
 
     while retry_count < max_retries:
         try:
-            logger.info(f"Attempting to connect to RabbitMQ (Attempt {retry_count + 1}/{max_retries})")
-
-            connection_params = pika.ConnectionParameters(
-                host=CONFIG['rabbitmq']['host'],
-                port=CONFIG['rabbitmq']['port'],
-                heartbeat=60,
-                connection_attempts=3,
-                retry_delay=5
-            )
-
-            connection = pika.BlockingConnection(connection_params)
-            channel = connection.channel()
-
-            channel.basic_qos(prefetch_count=1)
-
-            channel.basic_consume(
-                queue=CONFIG['rabbitmq']['queue'],
-                on_message_callback=process_message,
-                consumer_tag='task_updater_consumer'
-            )
-
-            logger.info(f"Successfully connected to RabbitMQ")
-            logger.info(f"Listening for messages on queue: {CONFIG['rabbitmq']['queue']}")
+            logger.info(f"Attempting to connect to SQS (Attempt {retry_count + 1}/{max_retries})")
+            
+            # Initialize SQS client
+            sqs_client = get_sqs_client()
+            
+            # Get or create queue URL
+            queue_url = get_queue_url(sqs_client)
+            
+            logger.info(f"Successfully connected to SQS")
+            logger.info(f"Listening for messages on queue: {queue_url}")
             logger.info("Press CTRL+C to exit")
+            
+            # Main message polling loop
+            while True:
+                try:
+                    # Receive messages from SQS
+                    response = sqs_client.receive_message(
+                        QueueUrl=queue_url,
+                        AttributeNames=['All'],
+                        MaxNumberOfMessages=CONFIG['sqs']['max_number_of_messages'],
+                        WaitTimeSeconds=CONFIG['sqs']['wait_time_seconds']
+                    )
+                    
+                    if 'Messages' in response:
+                        for message in response['Messages']:
+                            # Process the message
+                            success = process_message(message)
+                            
+                            # Delete the processed message from the queue
+                            if success:
+                                sqs_client.delete_message(
+                                    QueueUrl=queue_url,
+                                    ReceiptHandle=message['ReceiptHandle']
+                                )
+                                logger.debug(f"Deleted message: {message['MessageId']}")
+                            else:
+                                logger.warning(f"Message processing failed, keeping in queue: {message['MessageId']}")
+                    
+                except Exception as e:
+                    logger.error(f"Error processing messages: {str(e)}", exc_info=True)
+                    time.sleep(5)  # Wait before retrying
+                    continue
 
-            channel.start_consuming()
-
-        except pika.exceptions.AMQPConnectionError as e:
-            retry_count += 1
-            if retry_count >= max_retries:
-                logger.error(f"Failed to connect to RabbitMQ after {max_retries} attempts: {str(e)}")
-                break
-            logger.warning(f"Connection attempt {retry_count} failed. Retrying in 5 seconds...")
-            import time
-            time.sleep(5)
-
-        except pika.exceptions.AMQPChannelError as e:
-            logger.error(f"Channel error: {str(e)}")
-            break
-
-        except pika.exceptions.AMQPError as e:
-            logger.error(f"AMQP error: {str(e)}")
+        except Exception as e:
+            logger.error(f"Error in SQS consumer: {str(e)}", exc_info=True)
             retry_count += 1
             if retry_count >= max_retries:
                 logger.error(f"Max retries reached. Giving up.")
                 break
-
-        except Exception as e:
-            logger.error(f"Unexpected error: {str(e)}", exc_info=True)
-            break
-
+            logger.warning(f"Connection attempt {retry_count} failed. Retrying in 5 seconds...")
+            time.sleep(5)
+            
         finally:
-            if connection and connection.is_open:
+            if sqs_client:
                 try:
-                    connection.close()
-                    logger.info("Closed RabbitMQ connection")
+                    # SQS client doesn't need explicit cleanup, but we can log the disconnection
+                    logger.info("Disconnected from SQS")
                 except Exception as e:
+                    logger.error(f"Error disconnecting from SQS: {str(e)}")
                     logger.error(f"Error closing connection: {str(e)}")
 
