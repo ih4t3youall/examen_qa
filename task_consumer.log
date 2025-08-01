@@ -173,3 +173,32 @@ pip install python-multipart
 2025-07-31 21:41:42,892 - task_service - INFO - ================================================================================
 2025-07-31 21:41:42,892 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:41:42.892679
 2025-07-31 21:41:42,892 - task_service - INFO - ================================================================================
+2025-07-31 21:44:20,683 - task_service - INFO - Creating new task - ID: c972d1ac-c444-4ad7-90a9-30d3c4be217c
+2025-07-31 21:44:20,684 - task_service - INFO - Task Name: asdf
+2025-07-31 21:44:20,684 - task_service - INFO - Content: asdf
+2025-07-31 21:44:20,684 - task_service - INFO - Assignee: sdf
+2025-07-31 21:44:20,684 - task_service - INFO - Sending task c972d1ac-c444-4ad7-90a9-30d3c4be217c to message queue
+2025-07-31 21:44:20,694 - pika.adapters.utils.connection_workflow - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-07-31 21:44:20,694 - pika.adapters.utils.io_services_utils - ERROR - Socket failed to connect: <socket.socket fd=14, family=30, type=1, proto=6, laddr=('::1', 60495, 0, 0)>; error=61 (Connection refused)
+2025-07-31 21:44:20,694 - pika.adapters.utils.connection_workflow - ERROR - TCP Connection attempt failed: ConnectionRefusedError(61, 'Connection refused'); dest=(<AddressFamily.AF_INET6: 30>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('::1', 5672, 0, 0))
+2025-07-31 21:44:20,694 - pika.adapters.utils.connection_workflow - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+2025-07-31 21:44:20,695 - pika.adapters.utils.connection_workflow - INFO - Pika version 1.3.2 connecting to ('127.0.0.1', 5672)
+2025-07-31 21:44:20,695 - pika.adapters.utils.io_services_utils - INFO - Socket connected: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('127.0.0.1', 60496), raddr=('127.0.0.1', 5672)>
+2025-07-31 21:44:20,696 - pika.adapters.utils.connection_workflow - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-07-31 21:44:20,705 - pika.adapters.utils.connection_workflow - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-07-31 21:44:20,705 - pika.adapters.utils.connection_workflow - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-07-31 21:44:20,705 - pika.adapters.blocking_connection - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-07-31 21:44:20,706 - pika.adapters.blocking_connection - INFO - Created channel=1
+2025-07-31 21:44:20,708 - pika.adapters.blocking_connection - INFO - Closing connection (200): Normal shutdown
+2025-07-31 21:44:20,708 - pika.channel - INFO - Closing channel (200): 'Normal shutdown' on <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-07-31 21:44:20,709 - pika.channel - INFO - Received <Channel.CloseOk> on <Channel number=1 CLOSING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103081550> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-07-31 21:44:20,709 - pika.connection - INFO - Closing connection (200): 'Normal shutdown'
+2025-07-31 21:44:20,710 - pika.adapters.utils.io_services_utils - INFO - Aborting transport connection: state=1; <socket.socket fd=14, family=2, type=1, proto=6, laddr=('127.0.0.1', 60496), raddr=('127.0.0.1', 5672)>
+2025-07-31 21:44:20,710 - pika.adapters.utils.io_services_utils - INFO - _AsyncTransportBase._initate_abort(): Initiating abrupt asynchronous transport shutdown: state=1; error=None; <socket.socket fd=14, family=2, type=1, proto=6, laddr=('127.0.0.1', 60496), raddr=('127.0.0.1', 5672)>
+2025-07-31 21:44:20,710 - pika.adapters.utils.io_services_utils - INFO - Deactivating transport: state=1; <socket.socket fd=14, family=2, type=1, proto=6, laddr=('127.0.0.1', 60496), raddr=('127.0.0.1', 5672)>
+2025-07-31 21:44:20,710 - pika.connection - INFO - AMQP stack terminated, failed to connect, or aborted: opened=True, error-arg=None; pending-error=ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-07-31 21:44:20,710 - pika.connection - INFO - Stack terminated due to ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-07-31 21:44:20,711 - pika.adapters.utils.io_services_utils - INFO - Closing transport socket and unlinking: state=3; <socket.socket fd=14, family=2, type=1, proto=6, laddr=('127.0.0.1', 60496), raddr=('127.0.0.1', 5672)>
+2025-07-31 21:44:20,711 - pika.adapters.blocking_connection - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
+2025-07-31 21:44:20,711 - task_service - INFO - Message for task c972d1ac-c444-4ad7-90a9-30d3c4be217c sent to queue successfully
+2025-07-31 21:44:20,711 - task_service - INFO - Task c972d1ac-c444-4ad7-90a9-30d3c4be217c created successfully

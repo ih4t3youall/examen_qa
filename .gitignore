@@ -1,1 +1,73 @@
+# Ignorar carpetas .idea en cualquier parte del repo
+**/.idea/
+.idea/
+
+# Entornos virtuales
+venv/
+ENV/
+env/
+.venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de logs
 *.log
+
+# Configuración de usuario
+*.env
+*.env.*
+
+# Archivos de tests / coverage
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+pytest_cache/
+coverage.xml
+*.cover
+*.py,cover
+
+# Archivos generados por editores o IDEs
+*.swp
+*.swo
+*.DS_Store
+*.bak
+*.tmp
+
+# Archivos de Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Archivos de configuración o dependencias que se generan
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Base de datos SQLite
+*.sqlite3
+*.db
+
+# Archivos de distribución y build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Archivos de lock
+poetry.lock
+Pipfile.lock
+
+# Ignorar archivos secretos o temporales
+secrets.json
+*.pem
+*.key
+*.crt
+
+# Otros
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
