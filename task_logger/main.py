@@ -42,8 +42,8 @@ async def root():
     }
 
 def main():
-    # Ensure we're using port 8002
-    port = 8002
+    # Get port from configuration
+    port = CONFIG['server']['port']
     logger.info('=' * 80)
     logger.info(f'Starting Task Updater Service at {datetime.now()}')
     logger.info(f'Service Name: {CONFIG["nombre"]}')

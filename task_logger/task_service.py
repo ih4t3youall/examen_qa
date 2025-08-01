@@ -69,7 +69,7 @@ def process_message(message):
             logger.info(f"Task Name: {message_body.get('task_name', 'N/A')}")
             logger.info(f"Description: {message_body.get('content', 'N/A')}")
             logger.info(f"Assignee: {message_body.get('asignee', 'N/A')}")
-            logger.info(f"Status: {message_body.get('status', 'N/A')}")
+            logger.info(f"Action: {message_body.get('action', 'N/A')}")
             executed_commands.append(f"Create task {task_id}")
         elif action == 'delete':
             logger.info(f"Deleting task - ID: {task_id}")
