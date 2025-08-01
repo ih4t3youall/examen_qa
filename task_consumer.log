@@ -148,3 +148,28 @@
 2025-07-31 00:11:42,722 - pika.adapters.blocking_connection - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
 2025-07-31 00:11:42,722 - task_service - INFO - Message for task 392da3f4-f891-4ea0-b30d-a5171a743288 sent to queue successfully
 2025-07-31 00:11:42,722 - task_service - INFO - Task 392da3f4-f891-4ea0-b30d-a5171a743288 created successfully
+2025-07-31 21:37:49,989 - task_service - INFO - ================================================================================
+2025-07-31 21:37:49,990 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:37:49.990068
+2025-07-31 21:37:49,990 - task_service - INFO - ================================================================================
+2025-07-31 21:38:15,751 - task_service - INFO - ================================================================================
+2025-07-31 21:38:15,751 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:38:15.751505
+2025-07-31 21:38:15,751 - task_service - INFO - ================================================================================
+2025-07-31 21:38:15,752 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-07-31 21:39:56,753 - task_service - INFO - ================================================================================
+2025-07-31 21:39:56,753 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:39:56.753281
+2025-07-31 21:39:56,753 - task_service - INFO - ================================================================================
+2025-07-31 21:39:56,754 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-07-31 21:40:13,064 - task_service - INFO - ================================================================================
+2025-07-31 21:40:13,064 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:40:13.064426
+2025-07-31 21:40:13,064 - task_service - INFO - ================================================================================
+2025-07-31 21:41:42,892 - task_service - INFO - ================================================================================
+2025-07-31 21:41:42,892 - task_service - INFO - Starting Task Consumer at 2025-07-31 21:41:42.892679
+2025-07-31 21:41:42,892 - task_service - INFO - ================================================================================

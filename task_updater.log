@@ -407,3 +407,24 @@
 2025-07-31 00:11:42,722 - task_service - INFO - Description: me lalamo
 2025-07-31 00:11:42,722 - task_service - INFO - Assignee: martin
 2025-07-31 00:11:42,722 - task_service - INFO - Successfully processed message for task ID: 392da3f4-f891-4ea0-b30d-a5171a743288
+2025-07-31 21:42:16,789 - __main__ - INFO - ================================================================================
+2025-07-31 21:42:16,789 - __main__ - INFO - Starting Task Updater Service at 2025-07-31 21:42:16.789940
+2025-07-31 21:42:16,789 - __main__ - INFO - Service Name: Task Updater Service
+2025-07-31 21:42:16,790 - __main__ - INFO - Server running on http://localhost:8002
+2025-07-31 21:42:16,790 - task_service - INFO - Attempting to connect to RabbitMQ (Attempt 1/3)
+2025-07-31 21:42:16,790 - __main__ - INFO - RabbitMQ consumer started in background thread
+2025-07-31 21:42:16,790 - __main__ - INFO - ================================================================================
+2025-07-31 21:42:16,796 - pika.adapters.utils.connection_workflow - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-07-31 21:42:16,796 - pika.adapters.utils.io_services_utils - ERROR - Socket failed to connect: <socket.socket fd=12, family=30, type=1, proto=6, laddr=('::1', 60355, 0, 0)>; error=61 (Connection refused)
+2025-07-31 21:42:16,796 - pika.adapters.utils.connection_workflow - ERROR - TCP Connection attempt failed: ConnectionRefusedError(61, 'Connection refused'); dest=(<AddressFamily.AF_INET6: 30>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('::1', 5672, 0, 0))
+2025-07-31 21:42:16,796 - pika.adapters.utils.connection_workflow - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+2025-07-31 21:42:16,796 - pika.adapters.utils.connection_workflow - INFO - Pika version 1.3.2 connecting to ('127.0.0.1', 5672)
+2025-07-31 21:42:16,797 - pika.adapters.utils.io_services_utils - INFO - Socket connected: <socket.socket fd=12, family=2, type=1, proto=6, laddr=('127.0.0.1', 60356), raddr=('127.0.0.1', 5672)>
+2025-07-31 21:42:16,797 - pika.adapters.utils.connection_workflow - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1077742f0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1077742f0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-07-31 21:42:16,808 - pika.adapters.utils.connection_workflow - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1077742f0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-07-31 21:42:16,808 - pika.adapters.utils.connection_workflow - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1077742f0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-07-31 21:42:16,808 - pika.adapters.blocking_connection - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1077742f0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-07-31 21:42:16,808 - pika.adapters.blocking_connection - INFO - Created channel=1
+2025-07-31 21:42:16,811 - task_service - INFO - Successfully connected to RabbitMQ
+2025-07-31 21:42:16,811 - task_service - INFO - Listening for messages on queue: task_consumer_queue
+2025-07-31 21:42:16,811 - task_service - INFO - Press CTRL+C to exit
